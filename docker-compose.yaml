@@ -1,0 +1,103 @@
+name: google-microservices-demo
+
+services:
+  frontend:
+    image: velmasrikanth/gmsd-frontend:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ad-service
+      - cart-service
+      - checkout-service
+      - currency-service
+      - email-service
+      - payment-service
+      - product-catalog-service
+      - recommendation-service
+      - shipping-service
+      - shopping-assistant-service
+    networks:
+      - gmsd-network  
+  ad-service:
+    image: velmasrikanth/gmsd-adservice:latest
+    ports:
+      - "9555:9555"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  cart-service:
+    image: velmasrikanth/gmsd-cart:latest
+    ports:
+      - "1000:1000"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  checkout-service:
+    image: velmasrikanth/gmsd-checkout:latest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  currency-service:
+    image: velmasrikanth/gmsd-currency:latest
+    ports:
+      - "7000:7000"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  email-service:
+    image: velmasrikanth/gmsd-email:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  payment-service:
+    image: velmasrikanth/gmsd-payment:latest
+    ports:
+      - "50051:50051"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  product-catalog-service:
+    image: velmasrikanth/gmsd-product:latest
+    ports:
+      - "3550:3550"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  recommendation-service:
+    image: velmasrikanth/gmsd-recommend:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  shipping-service:
+    image: velmasrikanth/gmsd-shipping:latest
+    ports:
+      - "50051:50051"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  shopping-assistant-service:
+    image: velmasrikanth/gmsd-shoppingassist:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-catalog-service
+    networks:
+      - gmsd-network  
+  networks:
+    gmsd-network:
+      driver: bridge  
