@@ -29,6 +29,9 @@ services:
       - PAYMENT_SERVICE_ADDR=payment-service:50051
       - EMAIL_SERVICE_ADDR=email-service:8080
       - SHOPPING_ASSISTANT_SERVICE_ADDR=shopping-assistant-service:8080
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
 
     networks:
       - gmsd-network
@@ -42,6 +45,9 @@ services:
       - PAYMENT_SERVICE_ADDR=payment-service:50051
       - EMAIL_SERVICE_ADDR=email-service:8080
       - CURRENCY_SERVICE_ADDR=currency-service:7000
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -49,6 +55,12 @@ services:
     image: velmasrikanth/gmsd-payment:1.0
     environment:
       - PORT=50051
+      - GRPC_PORT=50051
+      - ENABLE_PROFILER=false
+      - GOOGLE_CLOUD_PROJECT=local
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -56,6 +68,14 @@ services:
     image: velmasrikanth/gmsd-currency:1.0
     environment:
       - PORT=7000
+      - GRPC_PORT=7000
+      - CURRENCY_SERVICE_ADDR=currency-service:7000
+      - ADDRESS=0.0.0.0
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
+      - ENABLE_PROFILER=false              # 👈 REQUIRED FOR NODE
+      - GOOGLE_CLOUD_PROJECT=local 
     networks:
       - gmsd-network
 
@@ -63,6 +83,9 @@ services:
     image: velmasrikanth/gmsd-adservice:1.0
     environment:
       - PORT=9555
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -70,6 +93,9 @@ services:
     image: velmasrikanth/gmsd-product:1.0
     environment:
       - PORT=3550
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -77,6 +103,9 @@ services:
     image: velmasrikanth/gmsd-recommend:1.0
     environment:
       - PRODUCT_CATALOG_SERVICE_ADDR=product-catalog-service:3550
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -84,6 +113,9 @@ services:
     image: velmasrikanth/gmsd-shipping:1.0
     environment:
       - PORT=50051
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -91,6 +123,9 @@ services:
     image: velmasrikanth/gmsd-email:1.0
     environment:
       - PORT=8080
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
@@ -98,22 +133,27 @@ services:
     image: velmasrikanth/gmsd-cart:1.0
     environment:
       - PORT=7070
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
     networks:
       - gmsd-network
 
   shopping-assistant-service:
-    image: velmasrikanth/gmsd-shopassist:1.0
+    image: velmasrikanth/gmsd-shopassist:1.0   
     ports:
-      - "8083:8080"          # host:container (optional, only if you want to hit it directly)
+      - "8083:8080"
     environment:
       - PORT=8080
+      - PRODUCT_CATALOG_SERVICE_ADDR=product-catalog-service:3550
+      - PROJECT_ID=local                    
+      - GOOGLE_CLOUD_PROJECT=local         
+      - ENABLE_PROFILER=false              
       - DISABLE_STATS=true
       - DISABLE_TRACING=true
       - DISABLE_PROFILER=true
-      # add more env vars if your app needs them
     networks:
       - gmsd-network
-
 networks:
   gmsd-network:
     driver: bridge
