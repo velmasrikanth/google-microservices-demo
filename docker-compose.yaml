@@ -21,7 +21,7 @@ services:
   ad-service:
     image: velmasrikanth/gmsd-adservice:1.0
     ports:
-      - "9555:8081"
+      - "9555:9555"
     depends_on:
       - product-catalog-service
     networks:
@@ -29,7 +29,7 @@ services:
   cart-service:
     image: velmasrikanth/gmsd-cart:1.0
     ports:
-      - "1000:8082"
+      - "7070:7070"
     depends_on:
       - product-catalog-service
     networks:
@@ -37,7 +37,7 @@ services:
   checkout-service:
     image: velmasrikanth/gmsd-checkout:1.0
     ports:
-      - "5000:8083"     
+      - "5050:5050"     
     depends_on:
       - product-catalog-service
     networks:
@@ -45,7 +45,7 @@ services:
   currency-service:
     image: velmasrikanth/gmsd-currency:1.0
     ports:
-      - "7000:8084"
+      - "7000:7000"
     depends_on:
       - product-catalog-service
     networks:
@@ -53,7 +53,7 @@ services:
   email-service:
     image: velmasrikanth/gmsd-email:1.0
     ports:
-      - "8080:8085"
+      - "8081:8080"
     depends_on:
       - product-catalog-service
     networks:
@@ -61,7 +61,7 @@ services:
   payment-service:
     image: velmasrikanth/gmsd-payment:1.0
     ports:
-      - "50051:8086"
+      - "50051:50051"
     depends_on:
       - product-catalog-service
     networks:
@@ -76,7 +76,7 @@ services:
   recommendation-service:
     image: velmasrikanth/gmsd-recommend:1.0
     ports:
-      - "8080:8087"
+      - "8082:8080"
     depends_on:
       - product-catalog-service
     networks:
@@ -84,7 +84,7 @@ services:
   shipping-service:
     image: velmasrikanth/gmsd-shipping:1.0
     ports:
-      - "50051:8088"
+      - "50052:50051"
     depends_on:
       - product-catalog-service
     networks:
@@ -92,7 +92,7 @@ services:
   shopping-assistant-service:
     image: velmasrikanth/gmsd-shoppingassist:1.0
     ports:
-      - "8080:8089"
+      - "8083:8080"
     depends_on:
       - product-catalog-service
     networks:
