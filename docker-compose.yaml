@@ -2,7 +2,7 @@ name: google-microservices-demo
 
 services:
   frontend:
-    image: velmasrikanth/gmsd-frontend:latest
+    image: velmasrikanth/gmsd-frontend:1.0
     ports:
       - "8080:8080"
     depends_on:
@@ -19,7 +19,7 @@ services:
     networks:
       - gmsd-network  
   ad-service:
-    image: velmasrikanth/gmsd-adservice:latest
+    image: velmasrikanth/gmsd-adservice:1.0
     ports:
       - "9555:9555"
     depends_on:
@@ -27,7 +27,7 @@ services:
     networks:
       - gmsd-network  
   cart-service:
-    image: velmasrikanth/gmsd-cart:latest
+    image: velmasrikanth/gmsd-cart:1.0
     ports:
       - "1000:1000"
     depends_on:
@@ -35,15 +35,15 @@ services:
     networks:
       - gmsd-network  
   checkout-service:
-    image: velmasrikanth/gmsd-checkout:latest
+    image: velmasrikanth/gmsd-checkout:1.0
     ports:
-      - "5000:5000"
+      - "5000:5000"     
     depends_on:
       - product-catalog-service
     networks:
       - gmsd-network  
   currency-service:
-    image: velmasrikanth/gmsd-currency:latest
+    image: velmasrikanth/gmsd-currency:1.0
     ports:
       - "7000:7000"
     depends_on:
@@ -51,7 +51,7 @@ services:
     networks:
       - gmsd-network  
   email-service:
-    image: velmasrikanth/gmsd-email:latest
+    image: velmasrikanth/gmsd-email:1.0
     ports:
       - "8080:8080"
     depends_on:
@@ -59,7 +59,7 @@ services:
     networks:
       - gmsd-network  
   payment-service:
-    image: velmasrikanth/gmsd-payment:latest
+    image: velmasrikanth/gmsd-payment:1.0
     ports:
       - "50051:50051"
     depends_on:
@@ -67,14 +67,14 @@ services:
     networks:
       - gmsd-network  
   product-catalog-service:
-    image: velmasrikanth/gmsd-product:latest
+    image: velmasrikanth/gmsd-product:1.0
     ports:
       - "3550:3550"
 
     networks:
       - gmsd-network  
   recommendation-service:
-    image: velmasrikanth/gmsd-recommend:latest
+    image: velmasrikanth/gmsd-recommend:1.0
     ports:
       - "8080:8080"
     depends_on:
@@ -82,7 +82,7 @@ services:
     networks:
       - gmsd-network  
   shipping-service:
-    image: velmasrikanth/gmsd-shipping:latest
+    image: velmasrikanth/gmsd-shipping:1.0
     ports:
       - "50051:50051"
     depends_on:
@@ -90,7 +90,7 @@ services:
     networks:
       - gmsd-network  
   shopping-assistant-service:
-    image: velmasrikanth/gmsd-shoppingassist:latest
+    image: velmasrikanth/gmsd-shoppingassist:1.0
     ports:
       - "8080:8080"
     depends_on:
