@@ -17,6 +17,7 @@ services:
       - product-catalog-service
       - recommendation-service
       - shipping-service
+      - shopping-assistant-service
     environment:
       - PRODUCT_CATALOG_SERVICE_ADDR=product-catalog-service:3550
       - CURRENCY_SERVICE_ADDR=currency-service:7000
@@ -27,6 +28,8 @@ services:
       - AD_SERVICE_ADDR=ad-service:9555
       - PAYMENT_SERVICE_ADDR=payment-service:50051
       - EMAIL_SERVICE_ADDR=email-service:8080
+      - SHOPPING_ASSISTANT_SERVICE_ADDR=shopping-assistant-service:8080
+
     networks:
       - gmsd-network
 
@@ -95,6 +98,19 @@ services:
     image: velmasrikanth/gmsd-cart:1.0
     environment:
       - PORT=7070
+    networks:
+      - gmsd-network
+
+  shopping-assistant-service:
+    image: velmasrikanth/gmsd-shopassist:1.0
+    ports:
+      - "8083:8080"          # host:container (optional, only if you want to hit it directly)
+    environment:
+      - PORT=8080
+      - DISABLE_STATS=true
+      - DISABLE_TRACING=true
+      - DISABLE_PROFILER=true
+      # add more env vars if your app needs them
     networks:
       - gmsd-network
 
