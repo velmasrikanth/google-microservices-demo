@@ -98,6 +98,6 @@ services:
       - product-catalog-service
     networks:
       - gmsd-network  
-  networks:
-    gmsd-network:
-      driver: bridge  
+networks:
+  gmsd-network:
+    driver: bridge  
