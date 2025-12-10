@@ -70,8 +70,7 @@ services:
     image: velmasrikanth/gmsd-product:latest
     ports:
       - "3550:3550"
-    depends_on:
-      - product-catalog-service
+
     networks:
       - gmsd-network  
   recommendation-service:
