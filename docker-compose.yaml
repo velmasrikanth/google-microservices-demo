@@ -38,6 +38,8 @@ services:
 
   checkout-service:
     image: velmasrikanth/gmsd-checkout:1.0
+    ports:
+      - "5050:5050"
     environment:
       - CART_SERVICE_ADDR=cart-service:7070
       - PRODUCT_CATALOG_SERVICE_ADDR=product-catalog-service:3550
@@ -53,6 +55,8 @@ services:
 
   payment-service:
     image: velmasrikanth/gmsd-payment:1.0
+    ports:
+      - "50051:50051"
     environment:
       - PORT=50051
       - GRPC_PORT=50051
@@ -66,6 +70,8 @@ services:
 
   currency-service:
     image: velmasrikanth/gmsd-currency:1.0
+    ports:
+      - "7000:7000"
     environment:
       - PORT=7000
       - GRPC_PORT=7000
@@ -81,6 +87,8 @@ services:
 
   ad-service:
     image: velmasrikanth/gmsd-adservice:1.0
+    ports:
+      - "9555:9555"
     environment:
       - PORT=9555
       - DISABLE_STATS=true
@@ -91,6 +99,8 @@ services:
 
   product-catalog-service:
     image: velmasrikanth/gmsd-product:1.0
+    ports:
+      - "3550:3550"
     environment:
       - PORT=3550
       - DISABLE_STATS=true
@@ -101,6 +111,8 @@ services:
 
   recommendation-service:
     image: velmasrikanth/gmsd-recommend:1.0
+    ports:
+      - "8082:8080"
     environment:
       - PRODUCT_CATALOG_SERVICE_ADDR=product-catalog-service:3550
       - DISABLE_STATS=true
@@ -111,6 +123,8 @@ services:
 
   shipping-service:
     image: velmasrikanth/gmsd-shipping:1.0
+    ports:
+      - "50051:50051"
     environment:
       - PORT=50051
       - DISABLE_STATS=true
@@ -121,6 +135,8 @@ services:
 
   email-service:
     image: velmasrikanth/gmsd-email:1.0
+    ports:
+      - "8081:8080"
     environment:
       - PORT=8080
       - DISABLE_STATS=true
@@ -131,6 +147,8 @@ services:
 
   cart-service:
     image: velmasrikanth/gmsd-cart:1.0
+    ports:
+      - "7070:7070"
     environment:
       - PORT=7070
       - DISABLE_STATS=true
