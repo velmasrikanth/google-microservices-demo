@@ -124,7 +124,7 @@ services:
   shipping-service:
     image: velmasrikanth/gmsd-shipping:1.0
     ports:
-      - "50051:50051"
+      - "50052:50051"
     environment:
       - PORT=50051
       - DISABLE_STATS=true
